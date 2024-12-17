@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -10,4 +10,13 @@ html {
 
 body {
   @apply font-sans text-gray-900;
+}
+
+/* Hide scrollbar for WebKit browsers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar in Firefox */
+.no-scrollbar {
+  scrollbar-width: none;
 }

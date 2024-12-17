@@ -12,11 +12,33 @@ export const PhotoGrid: React.FC<PhotoGridProps> = ({
   onPhotoClick,
 }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div
+      className="
+        relative 
+        overflow-x-auto 
+        flex 
+        flex-nowrap 
+        space-x-4 
+        py-2 
+        scrollbar-thin 
+        scrollbar-track-gray-100 
+        scrollbar-thumb-gray-900 
+        scrollbar-thumb-rounded 
+        /* If you want no scrollbar, replace above scrollbar classes with 'no-scrollbar' */
+      "
+    >
       {photos.map((photo, index) => (
         <div
-          key={index}
-          className="relative aspect-[4/3] cursor-pointer group overflow-hidden rounded-lg"
+          key={photo.id}
+          className="
+            relative 
+            flex-none 
+            w-96 h-64 
+            cursor-pointer 
+            group 
+            overflow-hidden 
+            rounded-lg
+          "
           onClick={() => onPhotoClick(index)}
         >
           <Image
@@ -26,7 +48,6 @@ export const PhotoGrid: React.FC<PhotoGridProps> = ({
             className="object-cover transition-all duration-500 ease-in-out group-hover:scale-110 group-hover:opacity-90"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-          {/* Optional: Add hover overlay */}
           <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
         </div>
       ))}

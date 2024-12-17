@@ -13,7 +13,6 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePhotoClick = (index: number) => {
-    console.log({ index });
     setCurrentIndex(index);
     setLightboxOpen(true);
   };

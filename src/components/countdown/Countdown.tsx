@@ -32,9 +32,12 @@ export function Countdown({ targetDate }: CountdownProps) {
 
   return (
     <div className="text-center my-16">
+      <h3 className="text-6xl font-thin mb-12 bg-clip-text text-black from-primary to-secondary">
+        Days until our wedding
+      </h3>
       <div className="flex justify-center gap-16">
         <div className="bg-white p-6 rounded-lg shadow-lg w-36">
-          <span className="text-7xl font-bold text-primary block mb-3">
+          <span className="text-7xl text-primary block mb-3">
             {timeLeft.days}
           </span>
           <p className="text-gray-600 font-medium uppercase tracking-wider text-base">
@@ -42,7 +45,7 @@ export function Countdown({ targetDate }: CountdownProps) {
           </p>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-lg w-36">
-          <span className="text-7xl font-bold text-primary block mb-3">
+          <span className="text-7xl text-primary block mb-3">
             {timeLeft.hours}
           </span>
           <p className="text-gray-600 font-medium uppercase tracking-wider text-base">
@@ -50,7 +53,7 @@ export function Countdown({ targetDate }: CountdownProps) {
           </p>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-lg w-36">
-          <span className="text-7xl font-bold text-primary block mb-3">
+          <span className="text-7xl text-primary block mb-3">
             {timeLeft.minutes}
           </span>
           <p className="text-gray-600 font-medium uppercase tracking-wider text-base">
@@ -58,7 +61,7 @@ export function Countdown({ targetDate }: CountdownProps) {
           </p>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-lg w-36">
-          <span className="text-7xl font-bold text-primary block mb-3">
+          <span className="text-7xl text-primary block mb-3">
             {timeLeft.seconds}
           </span>
           <p className="text-gray-600 font-medium uppercase tracking-wider text-base">

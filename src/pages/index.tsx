@@ -1,10 +1,11 @@
+import { COVER_IMAGES, PHOTOS } from "@/constants";
 import React from "react";
+import { Countdown } from "../components/countdown/Countdown";
 import { EventInfo } from "../components/EventInfo";
+import { PhotoGallery } from "../components/gallery/PhotoGallery";
 import { GuestMessages } from "../components/GuestMessages";
 import { Introduction } from "../components/Introduction";
-import { PhotoGallery } from "../components/PhotoGallery";
-import { CongratulationsMessage, Event, Photo } from "../types";
-import { Countdown } from "@/components/countdown/CountDown";
+import { CongratulationsMessage, Event } from "../types";
 
 // Sample data - replace with your actual data
 const WEDDING_DATE = new Date("2025-01-20T00:00:00");
@@ -21,22 +22,6 @@ const EVENT: Event = {
   address: "123 Church Street, City, State",
 };
 
-const PHOTOS: Photo[] = [
-  {
-    src: "/images/photo_2.jpeg",
-    width: 4,
-    height: 3,
-    alt: "Couple photo 1",
-  },
-  {
-    src: "/images/photo_3.jpeg",
-    width: 4,
-    height: 3,
-    alt: "Couple photo 2",
-  },
-  // Add more photos here
-];
-
 export default function Home() {
   const [messages, setMessages] = React.useState<CongratulationsMessage[]>([]);
 
@@ -52,14 +37,14 @@ export default function Home() {
         groomName="John"
         brideName="Jane"
         welcomeMessage="We joyfully invite you to celebrate our wedding"
-        coverImage="/images/photo_1.jpeg"
+        coverImage={COVER_IMAGES}
       />
 
       <Countdown targetDate={WEDDING_DATE} />
 
       <EventInfo event={EVENT} />
 
-      <PhotoGallery photos={PHOTOS} />
+      <PhotoGallery photos={PHOTOS.slice(0, 6)} />
 
       <GuestMessages onSubmitMessage={handleNewMessage} messages={messages} />
     </main>
