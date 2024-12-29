@@ -1,14 +1,15 @@
-import { COVER_IMAGES, PHOTOS } from "@/constants";
-import React from "react";
+import { BackgroundMusic } from "@/components/backgroundMusic";
+import { COVER_IMAGES, PHOTOS, STORY_SECTIONS } from "@/constants";
 import { Countdown } from "../components/countdown/Countdown";
 import { EventInfo } from "../components/EventInfo";
 import { PhotoGallery } from "../components/gallery/PhotoGallery";
 import { GuestMessages } from "../components/GuestMessages";
 import { Introduction } from "../components/Introduction";
-import { CongratulationsMessage, Event } from "../types";
+import { OurStory } from "../components/OurStory";
+import { Event } from "../types";
 
 // Sample data - replace with your actual data
-const WEDDING_DATE = new Date("2025-01-20T00:00:00");
+const WEDDING_DATE = new Date("2025-01-18T00:00:00");
 
 const EVENT: Event = {
   title: "Wedding Ceremony",
@@ -23,30 +24,25 @@ const EVENT: Event = {
 };
 
 export default function Home() {
-  const [messages, setMessages] = React.useState<CongratulationsMessage[]>([]);
-
-  const handleNewMessage = (
-    message: Omit<CongratulationsMessage, "timestamp">
-  ) => {
-    setMessages((prev) => [...prev, { ...message, timestamp: new Date() }]);
-  };
-
   return (
     <main>
+      <BackgroundMusic />
       <Introduction
-        groomName="John"
-        brideName="Jane"
+        groomName="Nhi"
+        brideName="Đăng"
         welcomeMessage="We joyfully invite you to celebrate our wedding"
         coverImage={COVER_IMAGES}
       />
 
       <Countdown targetDate={WEDDING_DATE} />
 
-      <EventInfo event={EVENT} />
+      <OurStory sections={STORY_SECTIONS} />
 
       <PhotoGallery photos={PHOTOS.slice(0, 6)} />
 
-      <GuestMessages onSubmitMessage={handleNewMessage} messages={messages} />
+      <EventInfo event={EVENT} />
+
+      <GuestMessages />
     </main>
   );
 }

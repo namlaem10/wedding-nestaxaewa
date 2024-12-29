@@ -25,7 +25,6 @@ export const PhotoGallery: React.FC<PhotoGalleryProps> = ({ photos }) => {
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-4xl font-serif text-center mb-12">Our Story</h2>
         <PhotoGrid photos={photos} onPhotoClick={handlePhotoClick} />
         <Lightbox
           open={lightboxOpen}

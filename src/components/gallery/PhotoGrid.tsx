@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import { Photo } from "@/types";
 
@@ -11,8 +11,35 @@ export const PhotoGrid: React.FC<PhotoGridProps> = ({
   photos,
   onPhotoClick,
 }) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null); // Add ref
+
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+
+    const autoScroll = () => {
+      if (scrollContainer) {
+        const isAtEnd =
+          scrollContainer.scrollLeft + scrollContainer.clientWidth >=
+          scrollContainer.scrollWidth;
+
+        if (isAtEnd) {
+          // Reset to start if we're at the end
+          scrollContainer.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          // Scroll to next photo
+          scrollContainer.scrollBy({ left: 384 + 16, behavior: "smooth" }); // 384px (w-96) + 16px (space-x-4)
+        }
+      }
+    };
+
+    const intervalId = setInterval(autoScroll, 5000); // 5 seconds
+
+    return () => clearInterval(intervalId); // Cleanup on unmount
+  }, []);
+
   return (
     <div
+      ref={scrollContainerRef}
       className="
         relative 
         overflow-x-auto 

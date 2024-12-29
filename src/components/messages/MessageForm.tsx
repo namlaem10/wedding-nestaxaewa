@@ -1,26 +1,50 @@
-import React, { useState } from 'react';
-import { CongratulationsMessage } from '../../types';
+import React, { useState } from "react";
+import { supabase } from "../../lib/supabase";
+import { CongratulationsMessage } from "../../types";
 
 interface MessageFormProps {
-  onSubmit: (message: Omit<CongratulationsMessage, 'timestamp'>) => void;
+  onSubmit: (message: CongratulationsMessage) => void;
 }
 
-export const MessageForm: React.FC<MessageFormProps> = ({ onSubmit }) => {
-  const [name, setName] = useState('');
-  const [message, setMessage] = useState('');
+const randomUUID = () => {
+  return (
+    Math.random().toString(36).substring(2, 15) +
+    Math.random().toString(36).substring(2, 15)
+  );
+};
 
-  const handleSubmit = (e: React.FormEvent) => {
+export const MessageForm: React.FC<MessageFormProps> = ({ onSubmit }) => {
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit({ name, message });
-    setName('');
-    setMessage('');
+    setIsSubmitting(true);
+
+    const { error } = await supabase.from("wishes").insert([{ name, message }]);
+
+    if (error) {
+      console.error("Error inserting message:", error);
+      alert("Failed to send message. Please try again.");
+    } else {
+      onSubmit({
+        id: randomUUID(),
+        name,
+        message,
+        created_at: new Date(),
+      });
+      setName("");
+      setMessage("");
+    }
+    setIsSubmitting(false);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-12">
-      <div className="space-y-4">
+    <form onSubmit={handleSubmit} className="mb-16 max-w-2xl mx-auto">
+      <div className="space-y-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="name" className="block text-lg text-gray-700">
             Your Name
           </label>
           <input
@@ -28,13 +52,13 @@ export const MessageForm: React.FC<MessageFormProps> = ({ onSubmit }) => {
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="mt-2 block w-full rounded-lg border-gray-200 shadow-sm focus:border-gray-500 focus:ring-gray-500 text-lg"
             required
           />
         </div>
-        
+
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="message" className="block text-lg text-gray-700">
             Your Message
           </label>
           <textarea
@@ -42,17 +66,18 @@ export const MessageForm: React.FC<MessageFormProps> = ({ onSubmit }) => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             rows={4}
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            className="mt-2 block w-full rounded-lg border-gray-200 shadow-sm focus:border-gray-500 focus:ring-gray-500 text-lg"
             maxLength={500}
             required
           />
         </div>
-        
+
         <button
           type="submit"
-          className="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          disabled={isSubmitting}
+          className="w-full py-3 px-6 rounded-lg text-lg font-serif bg-black text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors disabled:opacity-50"
         >
-          Send Wishes
+          {isSubmitting ? "Sending..." : "Send Wishes"}
         </button>
       </div>
     </form>

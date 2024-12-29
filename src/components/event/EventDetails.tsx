@@ -1,5 +1,5 @@
-import React from 'react';
-import { formatEventDate } from '@/utils/date';
+import React from "react";
+import { formatDateTime, formatEventDate } from "@/utils/date";
 
 interface EventDetailsProps {
   title: string;

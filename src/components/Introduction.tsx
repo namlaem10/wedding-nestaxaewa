@@ -66,8 +66,8 @@ export const Introduction: React.FC<IntroductionProps> = ({
             <Image
               src={image}
               alt={`Couple cover photo ${index + 1}`}
-              layout="fill"
-              objectFit="cover"
+              fill
+              className="object-cover"
               priority={index === 0}
             />
           </div>

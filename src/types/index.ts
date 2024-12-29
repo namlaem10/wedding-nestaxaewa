@@ -11,9 +11,10 @@ export interface Event {
 }
 
 export interface CongratulationsMessage {
+  id: string;
   name: string;
   message: string;
-  timestamp: Date;
+  created_at: Date;
 }
 
 export interface Photo {
