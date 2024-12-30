@@ -1,4 +1,3 @@
-import { supabase } from "@/lib/supabase";
 import React, { useEffect, useRef, useState } from "react";
 import { CongratulationsMessage } from "../types";
 import { MessageForm } from "./messages/MessageForm";
@@ -17,36 +16,30 @@ export const GuestMessages: React.FC = () => {
   }, [currentPage]); // Re-fetch when page changes
 
   async function fetchTotalCount() {
-    const { count, error } = await supabase
-      .from("wishes")
-      .select("*", { count: "exact", head: true });
-
-    if (error) {
+    try {
+      const response = await fetch("/api/wishes/count");
+      const data = await response.json();
+      setTotalCount(data.count || 0);
+    } catch (error) {
       console.error("Error fetching count:", error);
-      return;
     }
-
-    setTotalCount(count || 0);
   }
 
   async function fetchMessages() {
-    const { data, error } = await supabase
-      .from("wishes")
-      .select("*")
-      .order("created_at", { ascending: false })
-      .range(
-        (currentPage - 1) * messagesPerPage.current,
-        currentPage * messagesPerPage.current - 1
+    try {
+      const response = await fetch(
+        `/api/wishes?page=${currentPage}&limit=${messagesPerPage.current}`
       );
+      const data = await response.json();
 
-    if (error) {
+      if (!response.ok) throw new Error(data.message);
+
+      setMessages(data);
+      currentPage !== 1 &&
+        sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+    } catch (error) {
       console.error("Error fetching messages:", error);
-      return;
     }
-
-    setMessages(data);
-    currentPage !== 1 &&
-      sectionRef.current?.scrollIntoView({ behavior: "smooth" });
   }
 
   const onSubmitMessage = (message: CongratulationsMessage) => {

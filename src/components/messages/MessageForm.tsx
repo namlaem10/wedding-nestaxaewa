@@ -22,21 +22,25 @@ export const MessageForm: React.FC<MessageFormProps> = ({ onSubmit }) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const { error } = await supabase.from("wishes").insert([{ name, message }]);
+    const response = await fetch("/api/wishes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    });
 
-    if (error) {
-      console.error("Error inserting message:", error);
-      alert("Failed to send message. Please try again.");
-    } else {
-      onSubmit({
-        id: randomUUID(),
-        name,
-        message,
-        created_at: new Date(),
-      });
-      setName("");
-      setMessage("");
-    }
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.message);
+
+    onSubmit({
+      id: randomUUID(),
+      name,
+      message,
+      created_at: new Date(),
+    });
+    setName("");
+    setMessage("");
     setIsSubmitting(false);
   };
 
