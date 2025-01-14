@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { CongratulationsMessage } from "../types";
 import { MessageForm } from "./messages/MessageForm";
 import { MessageList } from "./messages/MessageList";
+import { useTranslation } from "react-i18next";
 
 export const GuestMessages: React.FC = () => {
   const [messages, setMessages] = useState<CongratulationsMessage[]>([]);
@@ -9,6 +10,7 @@ export const GuestMessages: React.FC = () => {
   const [totalCount, setTotalCount] = useState(0);
   const messagesPerPage = useRef(20);
   const sectionRef = useRef<HTMLElement>(null);
+  const { t } = useTranslation("common", { useSuspense: false });
 
   useEffect(() => {
     fetchMessages();
@@ -50,11 +52,10 @@ export const GuestMessages: React.FC = () => {
     <section ref={sectionRef} className="py-24 bg-gray-50">
       <div className="max-w-4xl mx-auto px-4">
         <h2 className="text-4xl font-serif text-center mb-4">
-          Send Your Wishes
+          {t("guestMessages.title")}
         </h2>
         <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-          Leave your heartfelt message for the happy couple. Your words will
-          become part of their cherished memories.
+          {t("guestMessages.description")}
         </p>
         <MessageForm onSubmit={onSubmitMessage} />
         <MessageList messages={messages} />
@@ -65,11 +66,13 @@ export const GuestMessages: React.FC = () => {
             disabled={currentPage === 1}
             className="px-4 py-2 border rounded-md disabled:opacity-50"
           >
-            Previous
+            {t("guestMessages.previous")}
           </button>
           <span className="px-4 py-2">
-            Page {currentPage} of{" "}
-            {Math.ceil(totalCount / messagesPerPage.current)}
+            {t("guestMessages.page", {
+              currentPage,
+              totalPages: Math.ceil(totalCount / messagesPerPage.current),
+            })}
           </span>
           <button
             onClick={() => setCurrentPage((p) => p + 1)}
@@ -78,7 +81,7 @@ export const GuestMessages: React.FC = () => {
             }
             className="px-4 py-2 border rounded-md disabled:opacity-50"
           >
-            Next
+            {t("guestMessages.next")}
           </button>
         </div>
       </div>

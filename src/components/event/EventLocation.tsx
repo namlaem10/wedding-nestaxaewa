@@ -12,7 +12,6 @@ export const EventLocation: React.FC<EventLocationProps> = ({
   longitude,
 }) => {
   const mapConfig = getMapConfig(latitude, longitude);
-  console.log({ mapConfig });
   return (
     <div className="h-64 mt-4 rounded-lg overflow-hidden">
       <Map {...mapConfig} />

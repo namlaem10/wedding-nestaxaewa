@@ -1,9 +1,10 @@
+import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react"; // Update this import
 
 const playlist = [
-  "/musics/lover1.mp3",
-  "/musics/lover1.mp3",
-  "/musics/lover1.mp3",
+  "/musics/music.mp3",
+  "/musics/music.mp3",
+  "/musics/music.mp3",
 ];
 
 export const BackgroundMusic = () => {
@@ -11,15 +12,18 @@ export const BackgroundMusic = () => {
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false); // Set initial state to false
   const [showModal, setShowModal] = useState(true); // Start with modal visible
+  const router = useRouter(); // Add this
 
-  const handleUserChoice = (wantsMusic: boolean) => {
+  const handleUserChoice = (language: string) => {
     setShowModal(false);
-    if (wantsMusic) {
-      audioRef.current
-        ?.play()
-        .then(() => setIsPlaying(true))
-        .catch((error) => console.error("Playback failed:", error));
-    }
+    // Instead of directly changing language, use Next.js routing
+    router.push(router.pathname, router.asPath, { locale: language });
+
+    // Start music after language selection
+    audioRef.current
+      ?.play()
+      .then(() => setIsPlaying(true))
+      .catch((error) => console.error("Playback failed:", error));
   };
 
   // Handle song ending and auto-play next song
@@ -51,16 +55,6 @@ export const BackgroundMusic = () => {
     }
   }, [currentSongIndex, isPlaying]);
 
-  const startPlaying = async () => {
-    try {
-      await audioRef.current?.play();
-      setIsPlaying(true);
-    } catch (error) {
-      setIsPlaying(false);
-      console.error("Failed to play:", error);
-    }
-  };
-
   const toggleMusic = () => {
     if (audioRef.current?.paused) {
       audioRef.current?.play();
@@ -75,32 +69,29 @@ export const BackgroundMusic = () => {
     <>
       {showModal && (
         <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white/95 rounded-xl p-8 max-w-sm w-full mx-4 animate-fade-in shadow-xl">
-            <h2 className="text-2xl font-serif mb-4 text-center">
-              Background Music
-            </h2>
-            <p className="text-gray-600 mb-8 text-center font-light">
-              Would you like to enhance your experience with some background
-              music?
-            </p>
-            <div className="flex flex-col space-y-3">
+          <div className="bg-white/95 rounded-xl p-8 max-w-xl w-full mx-4 animate-fade-in shadow-xl">
+            <h4 className="text-3xl font-serif mb-8 text-center">
+              Language / Ngôn ngữ
+            </h4>
+            <div className="flex flex-row justify-center space-x-4">
               <button
-                onClick={() => handleUserChoice(true)}
-                className="w-full py-3 px-6 bg-black text-white rounded-lg hover:bg-gray-900 transition-colors"
+                onClick={() => handleUserChoice("en")}
+                className="py-3 px-6 bg-black text-white rounded-lg hover:bg-gray-900 transition-colors flex items-center space-x-3 text-base"
               >
-                Yes, play music
+                <span className="text-xl">🇺🇸</span>
+                <span>English</span>
               </button>
               <button
-                onClick={() => handleUserChoice(false)}
-                className="w-full py-3 px-6 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-gray-800"
+                onClick={() => handleUserChoice("vi")}
+                className="py-3 px-6 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-gray-800 flex items-center space-x-3 text-base"
               >
-                No, thanks
+                <span className="text-xl">🇻🇳</span>
+                <span>Tiếng Việt</span>
               </button>
             </div>
           </div>
         </div>
       )}
-
       <div className="fixed bottom-4 right-4 z-50">
         <audio ref={audioRef}>
           <source src={playlist[currentSongIndex]} type="audio/mp3" />

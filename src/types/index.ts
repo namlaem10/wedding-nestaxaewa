@@ -2,12 +2,8 @@ export interface Event {
   title: string;
   date: Date;
   time: string;
-  venue: string;
   address: string;
-  coordinates: {
-    latitude: number;
-    longitude: number;
-  };
+  addressUrl: string;
 }
 
 export interface CongratulationsMessage {
