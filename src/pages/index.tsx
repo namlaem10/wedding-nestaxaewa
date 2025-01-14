@@ -1,48 +1,66 @@
 import { BackgroundMusic } from "@/components/backgroundMusic";
-import { COVER_IMAGES, PHOTOS, STORY_SECTIONS } from "@/constants";
-import { Countdown } from "../components/countdown/Countdown";
+import { withTranslations } from "@/components/withTranslations";
+import { COVER_IMAGES, PHOTOS } from "@/constants";
+import { GetStaticProps } from "next";
+import { useTranslation } from "next-i18next";
+import { useEffect, useState } from "react";
 import { EventInfo } from "../components/EventInfo";
+import { FamilyInfo } from "../components/FamilyInfo";
 import { PhotoGallery } from "../components/gallery/PhotoGallery";
 import { GuestMessages } from "../components/GuestMessages";
 import { Introduction } from "../components/Introduction";
 import { OurStory } from "../components/OurStory";
-import { Event } from "../types";
-
-// Sample data - replace with your actual data
-const WEDDING_DATE = new Date("2025-01-18T00:00:00");
-
-const EVENT: Event = {
-  title: "Wedding Ceremony",
-  date: WEDDING_DATE,
-  time: "2:00 PM",
-  coordinates: {
-    latitude: 40.7128,
-    longitude: -74.006,
-  },
-  venue: "St. Mary's Church",
-  address: "123 Church Street, City, State",
-};
 
 export default function Home() {
+  const { t } = useTranslation("common", { useSuspense: false });
+
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const groomFamily = [
+    { role: t("father"), name: "Ba Nguyễn Quang Lâm", note: "U" },
+    { role: t("mother"), name: "Mẹ Lê Thị Bích Liên" },
+  ];
+
+  const brideFamily = [
+    { role: t("father"), name: "Ba Nguyễn Hữu Lộc" },
+    { role: t("mother"), name: "Mẹ Nguyễn Thị Bích Giang" },
+  ];
+
+  if (!isClient) {
+    return null;
+  }
+
   return (
     <main>
       <BackgroundMusic />
       <Introduction
-        groomName="Nhi"
-        brideName="Đăng"
-        welcomeMessage="We joyfully invite you to celebrate our wedding"
+        groomName="Tuyết Nhi"
+        brideName="Quang Đăng"
+        welcomeMessage={t("welcomeMessage", "Welcome to our wedding")} // Add a default value
         coverImage={COVER_IMAGES}
       />
 
-      <Countdown targetDate={WEDDING_DATE} />
+      <FamilyInfo groomFamily={groomFamily} brideFamily={brideFamily} />
 
-      <OurStory sections={STORY_SECTIONS} />
+      <OurStory />
 
       <PhotoGallery photos={PHOTOS.slice(0, 6)} />
 
-      <EventInfo event={EVENT} />
+      <EventInfo />
 
       <GuestMessages />
     </main>
   );
 }
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  return {
+    props: {
+      ...(await withTranslations()(context)),
+    },
+  };
+};
