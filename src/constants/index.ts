@@ -66,7 +66,7 @@ export const PHOTOS: Photo[] = [
   },
 ];
 
-export const COVER_IMAGES = ["/images/1038.JPG", "/images/0829.JPG"];
+export const COVER_IMAGES = ["/images/0829.JPG", "/images/1038.JPG"];
 
 export const STORY_SECTIONS = [
   {
