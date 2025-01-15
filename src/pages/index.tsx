@@ -21,13 +21,13 @@ export default function Home() {
   }, []);
 
   const groomFamily = [
-    { role: t("father"), name: "Ba Nguyễn Quang Lâm", note: "U" },
-    { role: t("mother"), name: "Mẹ Lê Thị Bích Liên" },
+    { role: t("father"), name: "Nguyễn Quang Lâm", note: "U" },
+    { role: t("mother"), name: "Lê Thị Bích Liên" },
   ];
 
   const brideFamily = [
-    { role: t("father"), name: "Ba Nguyễn Hữu Lộc" },
-    { role: t("mother"), name: "Mẹ Nguyễn Thị Bích Giang" },
+    { role: t("father"), name: "Nguyễn Hữu Lộc" },
+    { role: t("mother"), name: "Nguyễn Thị Bích Giang" },
   ];
 
   if (!isClient) {
@@ -48,7 +48,7 @@ export default function Home() {
 
       <OurStory />
 
-      <PhotoGallery photos={PHOTOS.slice(0, 6)} />
+      <PhotoGallery photos={PHOTOS} />
 
       <EventInfo />
 

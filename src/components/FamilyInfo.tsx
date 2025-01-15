@@ -26,7 +26,7 @@ export const FamilyInfo = ({ groomFamily, brideFamily }: FamilyInfoProps) => {
               </h3>
               <div className="space-y-6 md:space-y-8">
                 {groomFamily.map((member, index) => (
-                  <div key={index} className="font-sans">
+                  <div key={index} className="font-serif">
                     <p className="text-gray-600 text-base md:text-lg mb-2">
                       {member.role}
                     </p>
@@ -50,7 +50,7 @@ export const FamilyInfo = ({ groomFamily, brideFamily }: FamilyInfoProps) => {
               </h3>
               <div className="space-y-6 md:space-y-8">
                 {brideFamily.map((member, index) => (
-                  <div key={index} className="font-sans">
+                  <div key={index} className="font-serif">
                     <p className="text-gray-600 text-base md:text-lg mb-2">
                       {member.role}
                     </p>
