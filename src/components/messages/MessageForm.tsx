@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { supabase } from "../../lib/supabase";
+import { useTranslation } from "react-i18next";
 import { CongratulationsMessage } from "../../types";
 
 interface MessageFormProps {
@@ -17,31 +17,43 @@ export const MessageForm: React.FC<MessageFormProps> = ({ onSubmit }) => {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { t } = useTranslation("common", { useSuspense: false });
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+    try {
+      e.preventDefault();
+      setIsSubmitting(true);
 
-    const response = await fetch("/api/wishes", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(message),
-    });
+      const messageData = {
+        name,
+        message,
+        created_at: new Date(),
+      };
 
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.message);
+      const response = await fetch("/api/wishes", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(messageData),
+      });
 
-    onSubmit({
-      id: randomUUID(),
-      name,
-      message,
-      created_at: new Date(),
-    });
-    setName("");
-    setMessage("");
-    setIsSubmitting(false);
+      const data = await response.json();
+      console.log({ data });
+      if (!response.ok) throw new Error(data.message);
+
+      onSubmit({
+        id: randomUUID(),
+        name,
+        message,
+        created_at: new Date(),
+      });
+      setName("");
+      setMessage("");
+      setIsSubmitting(false);
+    } catch (error) {
+      console.error({ error });
+    }
   };
 
   return (
@@ -49,7 +61,7 @@ export const MessageForm: React.FC<MessageFormProps> = ({ onSubmit }) => {
       <div className="space-y-6">
         <div>
           <label htmlFor="name" className="block text-lg text-gray-700">
-            Your Name
+            {t("guestMessages.name")}
           </label>
           <input
             type="text"
@@ -63,7 +75,7 @@ export const MessageForm: React.FC<MessageFormProps> = ({ onSubmit }) => {
 
         <div>
           <label htmlFor="message" className="block text-lg text-gray-700">
-            Your Message
+            {t("guestMessages.message")}
           </label>
           <textarea
             id="message"
@@ -81,7 +93,7 @@ export const MessageForm: React.FC<MessageFormProps> = ({ onSubmit }) => {
           disabled={isSubmitting}
           className="w-full py-3 px-6 rounded-lg text-lg font-serif bg-black text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors disabled:opacity-50"
         >
-          {isSubmitting ? "Sending..." : "Send Wishes"}
+          {isSubmitting ? t("guestMessages.sending") : t("guestMessages.send")}
         </button>
       </div>
     </form>
