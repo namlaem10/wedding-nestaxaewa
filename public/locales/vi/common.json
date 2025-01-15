@@ -29,7 +29,7 @@
     "title": "À thì, chuyện làaa",
     "note_1": "Mọi người vẫn hay gọi mình là Chả, là 1 người luôn mang nhiều năng lượng tích cực, mình vui vẻ và hòa đồng lắm. Bạn bè vẫn hay bảo mình là người kết nối mọi người lại với nhau, như ba Lâm của mình vậy đó. Từ ngày gặp Nhi, mình càng muốn bảo vệ và chăm sóc cô gái nhỏ này hơn.",
     "note_2": "Mình thấy mình dễ thương, cũng dễ gần. Bạn bè vẫn gọi mình là Nhi nhưng gia đình mình hay gọi mình là \"Nheo Hi\". Mình thì hướng nội \"partime\" lúc này lúc kia, nên mọi người sẽ khó đoán được mình thuộc tuýp người như thế nào. Từ ngày gặp Đăng, mình trở nên tích cực hơn, biết yêu thương bản thân hơn nữa.",
-    "note_3": "Chúng mình tình cờ nhầm người nên chào hỏi nhau rất vui. Hôm đó là ngày họp khoa, đâu đó cuối tháng 10 năm 2016. Đăng có đi motor đến trường, mà Nhi lại khá thích motor nữa, nên khi xuống bãi giữ xe thây Đăng đứng kế chiếc motor Kawazaki 300, lúc này Đăng đội mũ FullFace rồi, chỉ chừa đúng cặp mắt nên mình nhầm Đăng thành bạn cùng nhóm thuyết trình thành ra lại bắt chuyện như thân lắm vậy á. Phải qua ngày hôm sau, mình mới phát hiện là nhầm người, mặc dù khác lớp nhưng có vài môn học chung nên mình cũng kiếm infor Facebook để nhắn tin xin lỗi vì sự nhầm lẫn trên, sau đó mình cũng xóa luôn mess của Đăng.",
+    "note_3": "Chúng mình tình cờ nhầm người nên chào hỏi nhau rất vui. Hôm đó là ngày họp khoa, đâu đó cuối tháng 10 năm 2016. Đăng có đi motor đến trường, mà Nhi lại khá thích motor nữa, nên khi xuống bãi giữ xe thấy Đăng đứng kế chiếc motor Kawazaki 300, lúc này Đăng đội mũ FullFace rồi, chỉ chừa đúng cặp mắt nên mình nhầm Đăng thành bạn cùng nhóm thuyết trình thành ra lại bắt chuyện như thân lắm vậy á. Phải qua ngày hôm sau, mình mới phát hiện là nhầm người, mặc dù khác lớp nhưng có vài môn học chung nên mình cũng kiếm infor Facebook để nhắn tin xin lỗi vì sự nhầm lẫn trên, sau đó mình cũng xóa luôn mess của Đăng.",
     "note_4": "\"Love in the first sight\" Là câu nói dành cho Đăng đó mọi người. Ngay từ lần đầu gặp Nhi, Đăng đã muốn bảo vệ cô bé này rồi. Ấn tượng của Đăng về Nhi là hôm đó Nhi thuyết trình nhưng Nhi bị run xong nói xin lỗi mọi người, kiểu đáng yêu lắm. Sau hôm đó Đăng tìm cách để liên lạc với Nhi nhưng thật tình cờ Nhi lại nhắn tin cho Đăng về việc nhận nhầm người, xong Đăng phản hồi lại mà mãi chả thấy Nhi nói gì. Sau mới biết là cô bé này nhắn tin cho Đăng xong xóa luôn mess.",
     "note_5": "Sau khoảng 2 tháng nói chuyện với nhau thì Đăng ngỏ lời yêu Nhi vào ngày 18 tháng 01 năm 2017. Tụi mình cùng nhau đi chơi ở rất nhiều nơi, đi hết ngóc ngách của Sài Gòn. Không có chỗ nào của Sài Gòn mà tụi mình chưa đi qua. Kỉ niệm ở trường đại học, kỉ niệm trong kì quân sự. Nhi cũng chưa từng nghĩ sẽ có 1 ngày khi đi qua lại những chỗ cũ đó, mà Nhi nhớ một người nhiều đến như vậy.",
     "note_6": "Vậy đó, chúng mình yêu nhau gần 2 năm thì Đăng lại đi định cư nước ngoài, ngày mình biết tin thì mọi thứ của Nhi chậm đi hẳn, Nhi không biết sẽ đối diện với việc yêu xa thế nào. Rồi ngày yêu xa cũng tới, ngày 26 tháng 11 năm 2019 - một ngày mình không có quên được. Nhưng mà, chúng mình cũng đã vượt qua hơn 14.000km để về chung nhà với nhau.Vậy là đúng 8 năm yêu nhau, nhưng chúng mình đã cùng nhau cố gắng vượt qua 5 năm ở xa nhau. Cám ơn chúng ta thật nhiều nhé."
@@ -45,8 +45,11 @@
     "send": "Gửi lời chúc",
     "sending": "Đang gửi..."
   },
+  "gallery": {
+    "title": "Đây là album siêu tình của tụi mình"
+  },
   "groomFamily": "Nhà Trai",
   "brideFamily": "Nhà Gái",
-  "father": "Cha",
+  "father": "Ba",
   "mother": "Mẹ"
 }
