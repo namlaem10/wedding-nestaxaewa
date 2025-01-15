@@ -72,8 +72,10 @@ export const Introduction: React.FC<IntroductionProps> = ({
         className="relative z-10 flex flex-col items-center justify-center h-full text-white text-center px-4"
         style={{ opacity }}
       >
-        <h1 className="text-4xl md:text-6xl font-serif mb-4">
-          {brideName} & {groomName}
+        <h1 className="text-4xl md:text-6xl font-serif mb-4 flex flex-col md:block">
+          <span>{brideName}</span>
+          <span className="my-2 md:my-0 md:mx-2">&</span>
+          <span>{groomName}</span>
         </h1>
         <p className="text-lg md:text-xl max-w-2xl mx-auto font-light px-4">
           {welcomeMessage}

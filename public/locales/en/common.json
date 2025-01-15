@@ -27,7 +27,7 @@
   },
   "ourStory": {
     "title": "So, here’s the tea...",
-    "note_1": "They call me Cha! I’m like this little ball of sunshine who’s always upbeat and full of energy. I love bringing people together, just like my dad Lam—he’s got this amazing way of connecting everyone. Then I met Nhi, and boom, all I wanted to do was look out for her and be her personal bodyguard.",
+    "note_1": "They call me Chả! I’m like this little ball of sunshine who’s always upbeat and full of energy. I love bringing people together, just like my dad Lam—he’s got this amazing way of connecting everyone. Then I met Nhi, and boom, all I wanted to do was look out for her and be her personal bodyguard.",
     "note_2": "Hey, I’m Nhi—adorable, approachable, and (depending on the day) a part-time introvert. My friends call me Nhi, but at home, I’m affectionately known as 'Nheo Hi.' Since meeting Dang, I’ve leveled up—more positive, more confident, and totally loving myself more. Thanks, Dang!",
     "note_3": "This is hilarious—our first conversation was a total case of mistaken identity. It was late October 2016 at a faculty meeting. Dang rolled up on his motorbike, looking all cool with a FullFace helmet, standing by a Kawasaki 300. And me? A motorbike fangirl. So I just started chatting with him like we were old pals. Turns out, wrong dude! The next day, I found out my oopsie and messaged him on Facebook to apologize. And then, being the genius I am, I deleted the chat right after. Smooth, huh?",
     "note_4": "\"Love at first sight\" is totally how I felt about Nhi. From the moment I saw her, I just knew I wanted to protect her. My first memory of her? She was up there presenting, super nervous, and kept apologizing—it was the cutest thing ever. After that, I tried to find a way to talk to her, but guess what? She beat me to it! She messaged me first to apologize for mistaking me for someone else. I was thrilled and replied right away, but then... radio silence. Turns out, she had deleted the message right after sending it. Classic Nhi!",
@@ -44,6 +44,9 @@
     "message": "Your Message",
     "send": "Send Message",
     "sending": "Sending..."
+  },
+  "gallery": {
+    "title": "This is our super cheesy, ultra-romantic album!"
   },
   "groomFamily": "Groom's Family",
   "brideFamily": "Bride's Family",
