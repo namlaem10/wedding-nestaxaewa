@@ -22,7 +22,7 @@ export default function Home() {
   }, []);
 
   const groomFamily = [
-    { role: t("father"), name: "Nguyễn Quang Lâm", note: "✝" },
+    { role: t("father"), name: "Nguyễn Quang Lâm", note: "†" },
     { role: t("mother"), name: "Lê Thị Bích Liên" },
   ];
 
